@@ -23,12 +23,7 @@
   	public function getTouristSpot(){
 	    $this->db->order_by('tourist_name', 'asc');
 	    $query = $this->db->get('tbl_blogs');
-	    if($query->num_rows() > 0){
 	      	return $query->result();
-	    }
-	    else{
-	      	return false;
-	    }
   	}
   		public function account(){
 	    $this->db->order_by('id', 'desc');
@@ -166,6 +161,12 @@
          	);
          	$this->db->where('post_name', $username);
 		    $this->db->update('user_posts', $postname);
+		    $user = array(
+         		'user'=>$this->input->post('txt_username')
+         	);
+         	$this->db->where('user', $username);
+		    $this->db->update('usertrips', $user);
+
          	$check_session = array(
                     'post_name' => $field['username']
             ); 
@@ -309,6 +310,40 @@
 	    }
 	}
 
-  	
+	public function getTrips(){
+		
+		$query=$this->db->get('usertrips');
+		return $query->result();
+	}
+
+	public function getTripsById($id){
+	    $this->db->where('id', $id);
+	    $query = $this->db->get('usertrips');
+	    if($query->num_rows() > 0){
+	      	return $query->row();
+	    }
+	    else{
+	      	return false;
+	    }
+  	}
+  	public function getTourist(){
+ 		$query=$this->db->get('tbl_blogs');
+ 		return $query->result();
+ 	}
+ 	public function getOrigin(){
+  		$query=$this->db->get('places');
+  		return $query->result();
+  	}
+
+  	public function cancelTrip($id){
+	    $this->db->where('id', $id);
+	    $this->db->delete('usertrips');
+	    if($this->db->affected_rows() > 0){
+	      return true;
+	    }
+	    else{
+	      return false;
+	    }
+  	}	
   	
 }

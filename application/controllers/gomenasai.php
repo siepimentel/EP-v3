@@ -12,9 +12,9 @@
 			$array['spots']=$this->m->getBlog();
 			$array['posts']=$this->m->getPosts();
 			$array['editors']=$this->m->getEditors();
-			$this->load->view("template/header");
+		
 			$this->load->view("adminpage/admin",$array);
-			$this->load->view("template/footer");
+	
 		}
 		elseif ($this->session->userdata('u_id')=='2') {
 		redirect(base_url() . 'dashboard/user');
