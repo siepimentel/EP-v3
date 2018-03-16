@@ -11,7 +11,7 @@
       public function login()  
       {  
           if($this->session->userdata('u_id')==''){
-            $this->load->view("mainpage/login"); 
+            $this->load->view("mainpage/first"); 
           }
            elseif ($this->session->userdata('u_id')=='1') {
            redirect(base_url() . 'gomenasai/bakana');
@@ -23,9 +23,9 @@
       public function signup()  
       {  
           if($this->session->userdata('u_id')==''){
-           $this->load->view("template/header");
+           
            $this->load->view("mainpage/signup"); 
-           $this->load->view("template/footer"); 
+          
          }
          elseif ($this->session->userdata('u_id')=='1') {
            redirect(base_url() . 'gomenasai/bakana');
@@ -35,14 +35,18 @@
          }
       }
       public function login_val(){
+       
         $item = $this->m->getdata();
-        $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
+        $username = $this->input->post('username2');
+        $password = md5($this->input->post('password2'));
+       
         foreach($item->result()  as $row){
             if($row->username == $username && $row->password == $password){
               $user_role_id=$row->user_role_id;
+
             }  
         }
+       
        
         if($user_role_id==1){
                 $check_session = array(

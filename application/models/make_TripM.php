@@ -7,6 +7,8 @@
  	}
  	public function make_trip(){
 		$field = array(
+            'leader'=>$this->input->post('leader'),
+            'restriction'=>$this->input->post('restriction'),
 	          'user'=>$this->input->post('user'),
 	          'destination'=>$this->input->post('destination'),
 	          'origin'=>$this->input->post('origin'),
@@ -15,6 +17,13 @@
 	      	  //'date'=>date('Y-m-d H:i:s'),
 
 		);
+    $restriction = array
+    (
+      'members' => $this->input->post('user'),
+       'restriction' => 'leader'
+
+
+    );
     $currentDate = date('Y-m-d');
 
     if($this->check_date($field['date'])){
@@ -23,10 +32,12 @@
     }
     else{
        if($field['date'] > $currentDate){
+            $this->db->insert('leadmem' ,$restriction);  
             $this->db->insert('userTrips', $field);
-            if($this->db->affected_rows() > 0){
-                  return true;
-              }  
+            return $field;
+
+                 
+           
       }
       else{
             $this->session->set_flashdata('error_msg', 'Date invalid');
@@ -204,8 +215,52 @@
       }
 
 
+    public function getTrips(){
+      $query=$this->db->get('usertrips');
+      return $query->result();
+    }
+    public function getTouristSpot(){
+      $this->db->order_by('tourist_name', 'asc');
+      $query = $this->db->get('tbl_blogs');
+          return $query->result();
+    }
 
+    public function jointrip($user){
+      $this->db->where('user', $user);
+      $query = $this->db->get('usertrips');
+      return $query->row();
+   }
+    public function pakita($id){
+      $this->db->where('id', $id);
+      $query = $this->db->get('usertrips');
+      return $query->row();
+   }
+   public function requestjoin($user,$id){
+      $field = array(
+        'tripid' => $id ,
+        'members' => $user ,
+        'restriction' => 'viewer'
 
+      );
+      //print_r($field);exit();
+       $this->db->insert('leadmem', $field);
+   }
+   public function getRestriction(){
+    $query=$this->db->get('leadmem');
+    return $query->result(); 
+   }
+
+   public function changeID($result){
+   
+    $this->db->where('destination',$result['destination']);
+    $this->db->where('origin',$result['origin']);
+    $this->db->where('name',$result['name']);
+    $this->db->where('date',$result['date']);
+    $this->db->where('leader',$result['leader']);
+    $this->db->where('user',$result['user']);
+    $query=$this->db->get('usertrips');
+    return $query->result();
+   }
 
 
 

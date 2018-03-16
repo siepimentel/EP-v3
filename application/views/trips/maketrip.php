@@ -30,6 +30,8 @@
                  ?></center>
         </div>
 		<?php echo form_open('trips/addTrip');?>
+    <input type="hidden" name="restriction" value="leader">
+    <input type="hidden" name="leader" value="<?php echo $this->session->userdata('post_name')?>">
 		     <div class="container" >
 				<div class="form-group row">
 				    <label class="col-md-2 text-left" >Destination</label>

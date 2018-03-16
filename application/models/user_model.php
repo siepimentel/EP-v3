@@ -23,12 +23,7 @@
   	public function getTouristSpot(){
 	    $this->db->order_by('tourist_name', 'asc');
 	    $query = $this->db->get('tbl_blogs');
-	    if($query->num_rows() > 0){
 	      	return $query->result();
-	    }
-	    else{
-	      	return false;
-	    }
   	}
   		public function account(){
 	    $this->db->order_by('id', 'desc');

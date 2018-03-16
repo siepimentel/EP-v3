@@ -21,10 +21,9 @@
 <body>
 
       <div class="container-fluid" style="text-align: right">
-        <a href="<?php echo base_url().'dashboard/viewprofile'; ?>" class="btn btn-primary btn-lg" ">Back</a>
+        <a href="<?php echo base_url().'dashboard/user'; ?>" class="btn btn-primary btn-lg" ">Back</a>
       </div>
-      <div class="container-fluid" style="color: white; padding: 20px; text-align: center">
-
+      <div class="container-fluid" style="color: white; padding: 20px; text-align: center;">
           <label style="font-size: 50px; font-weight: bold; ">MY TRIPS</h1>
       </div>
       <div class="container" >
@@ -78,8 +77,11 @@
              
               <?php echo '<label style="font-size:15px;"> Origin: '.$post->origin.'</label>'; ?><br/>
               <?php echo '<label style="font-size:15px;"> Date: '.$post->date.'</label>'; ?><hr/>
-              <a href="<?php echo base_url('dashboard/editTrip/'.$post->id); ?>" class="btn btn-success">Edit Trip</a>
-              <a href="<?php echo base_url('dashboard/cancelTrip/' .$post->id) ?>" class="btn btn-danger" onclick="return confirm('Do you want to cancel this trip?');">Cancel Trip</a>
+             
+              <?php if($this->session->userdata('post_name')==$post->leader):?>
+                  <a href="<?php echo base_url('dashboard/editTrip/'.$post->id); ?>" class="btn btn-success btn-sm">Edit Trip</a>
+              <?php endif?>
+              <a href="<?php echo base_url('dashboard/cancelTrip/' .$post->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to cancel this trip?');">Cancel Trip</a>
 
             </div>
           <?php endif;?>
