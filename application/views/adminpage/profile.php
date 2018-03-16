@@ -75,59 +75,6 @@
 				</div>
 			</div>
 		<?php endif?>	
-		<?php if(!$trips):?>
-			<div class="container">
-				<center><label style="font-size: 50px; font-family: century gothic; font-weight: bold; color: white; margin: 20px;">No Planned Trips Yet</label></center><br/>
-			</div>
-		
-		<?php else:?>
-
-		<div class="container">
-				<center><label style="font-size: 50px; font-family: century gothic; font-weight: bold; color: white; margin: 20px;">Planned Trips</label></center><br/>
-		</div>
-
-		 <div class="container-fluid" style="text-align: center">
-          <div class="group row">
-          <?php 
-            if($trips){
-              foreach($trips as $post){
-
-          ?>
-          <div class="col-md-6">
-         
-            <div class="container" id="posts">
-              <?php echo '<h2 >'.$post->name.'</h2>'; ?>
-               <?php echo '<label style="font-size:15px;"> Destination: '.$post->destination.'</label>'; ?><br/>
-              <?php 
-                if($tourist){
-                  foreach($tourist as $img){
-
-              ?>
-                  <?php if($post->destination==$img->tourist_name):?>
-                    <img style="width: 100%;"; src="<?php echo base_url().'assets/upload/'.$img->ts_image;?>">
-                    <?php echo '<label style="font-size:15px;"> Address: '.$img->address.'</label>'; ?><br/>
-                  <?php endif;?>
-                
-                <?php
-                  }
-                }
-              ?>
-
-             
-              <?php echo '<label style="font-size:15px;"> Origin: '.$post->origin.'</label>'; ?><br/>
-              <?php echo '<label style="font-size:15px;"> Date: '.$post->date.'</label>'; ?><hr/>
-
-            </div>
-         
-          </div>  
-          <?php
-            }
-          }
-        ?>
-        </div>
-    </div>
-<?php endif?>	
-
 
 
 

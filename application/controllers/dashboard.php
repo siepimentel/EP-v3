@@ -5,9 +5,9 @@
       function __construct(){
             parent:: __construct();
             $this->load->model('user_model','m');
-    	}      
+      }      
 
-    	public function user(){
+      public function user(){
           if ($this->session->userdata('u_id')=='2') {
              $data['posts'] = $this->m->getPost();
              $data['spots'] = $this->m->getTouristSpot();

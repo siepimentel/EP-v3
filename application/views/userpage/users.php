@@ -1,223 +1,278 @@
-<!DOCTYPE html>  
- <html>  
-	 <head>  
-	      	<title>EXPLORE PINAS</title>  
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-			<style>
-				#posts{
-					background-color: white;
-					margin-bottom: 40px;
-					padding: 20px;
-					border-radius: 2px;
-				}
-				body{
-					background-color: black;
-					font-family: century gothic;
-				}
-				#crt{
-					background-color: white;
-					border-radius: 2px;
-					width: 50%;
 
 
-				}
-				#title{
-					text-align: center;
-				}
-				
-			</style>
-	</head>
-	<body>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		<div class="container-fluid" style="width: 100%; text-align: right; padding-top: 10px" >
-			<a href="<?php echo base_url().'aishiteru/logout'; ?>" class="btn btn-success btn-lg" ">Log Out</a>
-			<a href="<?php echo base_url().'dashboard/viewprofile'; ?>" class="btn btn-warning btn-lg" ">View Profile</a>
-			<a href="<?php echo base_url().'Trips/makeTrip'; ?>" class="btn btn-primary btn-lg" ">Make Trip</a>
-		</div>
-	
+    <title>EXPLOREPINAS</title>
+<!-- Bootstrap Core CSS -->
+    <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Fonts -->
+    <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/animate.css" rel="stylesheet" />
+    <!-- Squad theme CSS -->
+    <link href="<?php echo base_url();?>assets/css/signup.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/color/default.css" rel="stylesheet">
+</head>
 
-	
-		<?php echo '<h1 style="color: white; margin: 50px">WELCOME, '.$this->session->userdata('post_name'). '</h1>'?>
-		<div class="container" >
-				<center><?php
-                if($this->session->flashdata('success_msg')){
-                ?>
-                    <div class="alert alert-success">
-                      <?php echo $this->session->flashdata('success_msg'); ?>
-                    </div>
-                <?php   
-                  }
-                ?>
-                <?php
-                    if($this->session->flashdata('error_msg')){
-                ?>
-                  <div class="alert alert-danger">
-                   <?php echo $this->session->flashdata('error_msg'); ?>
-                  </div>
-                <?php   
-                  }
-                 ?></center>
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+    <!-- Preloader -->
+    <div id="preloader">
+      <div id="load"></div>
+    </div>
+
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+					<ul class="nav navbar-nav">
+					<li><a><font font size="5">EXPLOREPINAS</font></a></li>
+				</ul>
+				</div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#intro">Home</a></li>
+        <li><a href="#about">Trips</a></li>
+       
+     
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Places <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Must Visit</a></li>
+            <li><a href="<?php echo base_url().'dashboard/tourist_spot'; ?>">Tourist Spot</a></li>
+
+            <li><a href="<?php echo base_url().'dashboard/editorspick'; ?>">Editor's Choice</a></li>
+
+          </ul>
+        </li>
+  
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="<?php echo base_url().'dashboard/viewprofile'; ?>">View Profile</a></li>
+  			
+    
+            <li><a href="<?php echo base_url().'aishiteru/logout'; ?>">Log Out</a></li>          
+          </ul>
+        </li>
+      </ul>
+  </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
+    </nav>
+
+
 	
-	<hr/>
-<div class="container-fluid" style="text-align: center;">
-	<div class="group row">
-		<div class="col-md-3" style="background-color: white">
-			<label style="padding-top:80px; font-size: 50px; font-weight: bold;">Tourist Spots</label><br/>
-			<label class="text-muted" style="font-size: 13px; ">Tourist Destinations in the Philippines</label>
-			<hr/>
-			<center><a href="<?php echo base_url().'dashboard/tourist_spot'; ?>" class="btn btn-success btn-lg" ">View Tourist Spots</a></center>
-		</div>
-		<div class="col-md-9">
-			<div class="container-fluid">
-				<div  id="controls" class="carousel slide" data-ride="carousel">
-					  <div class="carousel-inner">
-						    <div class="carousel-item active">
-						    	<img class="d-block w-100" style="height: 400px;"; src="<?php echo base_url().'assets/default_photo/1.jpg';?>">
-						    </div>
-
-					    	<?php 
-								if($spots){
-									foreach($spots as $spot){
-
-							?>
-						    <div class="carousel-item">
-						    	<img class="d-block w-100" style="height: 400px;"; src="<?php echo base_url().'assets/upload/'.$spot->ts_image;?>">
-					     		<div class="carousel-caption d-none d-md-block">
-								    <h1 style="color: yellow"><?php echo $spot->tourist_name?></h1>
-								    <p><?php echo $spot->address?></p>
-								</div>
-							</div>
-						    <?php
-									}
-								}
-							?>
-						    
-						  <a class="carousel-control-prev" href="#controls" role="button" data-slide="prev">
-						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Previous</span>
-						  </a>
-						  <a class="carousel-control-next" href="#controls" role="button" data-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Next</span>
-						  </a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<hr/>
-<hr/>
-
-<div class="container-fluid" style="text-align: center;">
-	<div class="group row">
-		<div class="col-md-3" style="background-color: white">
-			<label style="padding-top:80px;font-size: 50px; font-weight: bold">Stories</label><br/>
-			<label class="text-muted" style="font-size: 13px">Stories posted by users.</label>
-			<hr/><br/>
-			
-			<center><a href="<?php echo base_url().'dashboard/stories'; ?>" class="btn btn-danger btn-lg" ">View Stories</a></center>
-		</div>
-		<div class="col-md-9">
-			<div class="container-fluid">
-				<div  id="controls2" class="carousel slide" data-ride="carousel">
-					  <div class="carousel-inner">
-						    <div class="carousel-item active">
-						    	<img class="d-block w-100" style="height: 400px;"; src="<?php echo base_url().'assets/default_photo/2.jpg';?>">
-						    </div>
-
-					    	<?php 
-								if($posts){
-									foreach($posts as $post){
-
-							?>
-						    <div class="carousel-item">
-						    	<img class="d-block w-100" style="height: 400px;"; src="<?php echo base_url().'assets/uploadposts/'.$post->post_image;?>">
-					     		<div class="carousel-caption d-none d-md-block">
-								    <h3 style="color: yellow"><?php echo $post->title?></h3>
-								    <label style="font-size: 15px; color: white"><?php echo $post->body?></label>
-								    <label style="font-size: 15px; color: red; "> - <?php echo $post->post_name?></label>
-								</div>
-							</div>
-						    <?php
-									}
-								}
-							?>
-						    
-						  <a class="carousel-control-prev" href="#controls2" role="button" data-slide="prev">
-						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Previous</span>
-						  </a>
-						  <a class="carousel-control-next" href="#controls2" role="button" data-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Next</span>
-						  </a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<hr/>
-<hr/>
-
-<div class="container-fluid" style="text-align: center;">
-	<div class="group row">
-		<div class="col-md-3" style="background-color: white;">
-			<label style="padding-top:80px;font-size: 50px; font-weight: bold">Editors Pick</label><br/>
-			<label class="text-muted" style="font-size: 13px">Stories picked stands the most.</label>
-			<hr/><br/>
-			
-			<center><a href="<?php echo base_url().'dashboard/editorspick'; ?>" class="btn btn-dark btn-lg" ">View Editors Pick</a></center>
-		</div>
-		<div class="col-md-9">
-			<div class="container-fluid">
-				<div  id="controls3" class="carousel slide" data-ride="carousel">
-					  <div class="carousel-inner">
-						    <div class="carousel-item active">
-						    	<img class="d-block w-100" style="height: 400px;"; src="<?php echo base_url().'assets/default_photo/3.jpg';?>">
-						    </div>
-
-					    	<?php 
-								if($editors){
-									foreach($editors as $editor){
-
-							?>
-						    <div class="carousel-item">
-						    	<img class="d-block w-100" style="height: 400px;"; src="<?php echo base_url().'assets/uploadposts/'.$editor->post_image;?>">
-					     		<div class="carousel-caption d-none d-md-block">
-								    <h3 style="color: yellow"><?php echo $post->title?></h3>
-								    <label style="font-size: 15px; color: white"><?php echo $editor->body?></label>
-								    <label style="font-size: 15px; color: red; "> - <?php echo $editor->post_name?></label>
-								</div>
-							</div>
-						    <?php
-									}
-								}
-							?>
-						    
-						  <a class="carousel-control-prev" href="#controls3" role="button" data-slide="prev">
-						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Previous</span>
-						  </a>
-						  <a class="carousel-control-next" href="#controls3" role="button" data-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Next</span>
-						  </a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<hr/>
-
+	 <section id="service" class="home-section text-center bg-gray">
 		
- </body>  
- </html>  
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Trips</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+				<div class="wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon"><img src="<?php echo base_url();?>assets/img/icons/makee.png" alt=""  height="100" width="100"/>
+				</div>
+					<div class="service-desc"> <a href="<?php echo base_url().'trips/maketrip'; ?>">
+						<h5 >Make Trip</h5></a>
+					
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="<?php echo base_url();?>assets/img/icons/find.png" alt="" height="100" width="100"/>
+					</div>
+					<div class="service-desc">
+						<a href="<?php echo base_url().'trips/viewtrips'; ?>"><h5>Find Trip</h5></a>
+						
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="<?php echo base_url();?>assets/img/icons/map.png" alt=""  height="100" width="100"/>
+					</div>
+					<div class="service-desc">
+					<a href="<?php echo base_url().'dashboard/viewtrips'; ?>"><h5>My Trip</h5></a>
+						
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInRight" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="<?php echo base_url();?>assets/img/icons/itin.png" alt="" height="100" width="100" />
+					</div>
+					<div class="service-desc">
+					<a href="#"><h5>Itinerary</h5></a>
+					
+					</div>
+                </div>
+				</div>
+            </div>
+        </div>		
+		</div>
+	</section>
+	
+	<!-- Section: about -->
+    <section id="about" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Tourist Spots</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+					</div>
+					</div>
+				</div>
+				
+			</div>
+			</div>
+		</div>
+		<div class="container">
+				<a href="<?php echo base_url().'dashboard/tourist_spot'; ?>"><h4>View Tourist Spots</h4></a>
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+        <div class="row">
+		
+	
+            <div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.2s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Chocolate Hills</h5>
+                        <p class="subtitle">Carmen, Bohol</p>
+                        <div class="avatar"><img src="<?php echo base_url();?>assets/img/team/choco.jpg" alt="" class="img-responsive img-circle" /></div>
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.5s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Puerto Princesa</h5>
+                        <p class="subtitle">Palawan</p>
+                        <div class="avatar"><img src="<?php echo base_url();?>assets/img/team/puerto.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.8s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Banaue Rice Terraces</h5>
+                        <p class="subtitle">Ifugao, Nueva Vizcaya</p>
+                        <div class="avatar"><img src="<?php echo base_url();?>assets/img/team/rice.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.8s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Boracay</h5>
+                        <p class="subtitle">Malay, Aklan</p>
+                        <div class="avatar"><img src="<?php echo base_url();?>assets/img/team/bora.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                    </div>
+                </div>
+				</div>
+            </div>
+			
+        </div>		
+		</div>
+	</section>
+	<!-- /Section: about -->
+
+	
+	
+	
+	<!-- Section: services -->
+  
+	<!-- /Section: services -->
+	
+	
+    
+	<!-- /Section: contact -->
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+					<div class="wow shake" data-wow-delay="0.4s">
+					<div class="page-scroll marginbot-30">
+						<a href="#intro" id="totop" class="btn btn-circle">
+							<i class="fa fa-angle-double-up animated"></i>
+						</a>
+					</div>
+					</div>
+					<p>&copy;Copyright 2018 - EXPLOREPINAS. All rights reserved.</p>
+				</div>
+			</div>	
+		</div>
+	</footer>
+
+    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/jquery.easing.min.js"></script> 
+    <script src="<?php echo base_url();?>assets/js/jquery.scrollTo.js"></script>
+    <script src="<?php echo base_url();?>assets/js/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="<?php echo base_url();?>assets/js/custom.js"></script>
+
+</body>
+
+</html>
+

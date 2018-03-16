@@ -12,9 +12,9 @@
 			$array['spots']=$this->m->getBlog();
 			$array['posts']=$this->m->getPosts();
 			$array['editors']=$this->m->getEditors();
-			$this->load->view("template/header");
+		
 			$this->load->view("adminpage/admin",$array);
-			$this->load->view("template/footer");
+	
 		}
 		elseif ($this->session->userdata('u_id')=='2') {
 		redirect(base_url() . 'dashboard/user');
@@ -80,7 +80,7 @@
 	    else{
 	        redirect(base_url());
 	    }
-	}
+		}
 
 	public function delete($id){
 		if ($this->session->userdata('u_id')=='1') {
@@ -127,16 +127,8 @@
 	    }
 	}
 	public function updateImage($ts_image){
-		if ($this->session->userdata('u_id')=='1') {
 		 $img['data'] = $this->m->getImage($ts_image);
 		$this->load->view("crud/editImage",$img);
-		   }
-        elseif($this->session->userdata('u_id')=='2'){
-            redirect(base_url() . 'dashboard/user');
-        }
-        else{
-            redirect(base_url());
-        }
 
 	}
 
@@ -150,19 +142,8 @@
 	}
 
   	public function view($post_name=null){
-  		if ($this->session->userdata('u_id')=='1') {
-			$data['item'] = $this->m->info($post_name);
-			$data['trips'] = $this->m->trips($post_name);
-			$data['tourist'] = $this->m->getTouristSpot();
-		    $this->load->view("adminpage/profile",$data);
-		}
-        elseif($this->session->userdata('u_id')=='2'){
-            redirect(base_url() . 'dashboard/user');
-        }
-        else{
-            redirect(base_url());
-        }
-
+		$data['item'] = $this->m->info($post_name);
+	    $this->load->view("adminpage/profile",$data);
   	}
 
   	public function deletepost($id){
