@@ -5,9 +5,9 @@
       function __construct(){
             parent:: __construct();
             $this->load->model('user_model','m');
-    	}      
+      }      
 
-    	public function user(){
+      public function user(){
           if ($this->session->userdata('u_id')=='2') {
              $data['posts'] = $this->m->getPost();
              $data['spots'] = $this->m->getTouristSpot();
@@ -127,8 +127,16 @@
     }
 
     public function deletepost_inprofile($id){
+      if ($this->session->userdata('u_id')=='2') {
         $result = $this->m->deletepost($id);
         redirect(base_url('dashboard/viewprofile'));
+          }
+        elseif($this->session->userdata('u_id')=='1'){
+            redirect(base_url() . 'gomenasai/bakana');
+        }
+        else{
+            redirect(base_url());
+        }
     }
 
     public function updatepost_inprofile(){
@@ -199,8 +207,16 @@
     }
       
     public function editpassword($username){
+       if ($this->session->userdata('u_id')=='2') {
         $pass['data'] = $this->m->getPassword($username);
         $this->load->view('userpage/editpassword',$pass);
+          }
+        elseif($this->session->userdata('u_id')=='1'){
+            redirect(base_url() . 'gomenasai/bakana');
+        }
+        else{
+            redirect(base_url());
+        }
     }
 
     public function updatePassword(){
@@ -214,8 +230,16 @@
     }
 
     public function updatePostImage($post_image){
+       if ($this->session->userdata('u_id')=='2') {
        $img['data'] = $this->m->getImage($post_image);
       $this->load->view("userpage/updatePostImage",$img);
+          }
+        elseif($this->session->userdata('u_id')=='1'){
+            redirect(base_url() . 'gomenasai/bakana');
+        }
+        else{
+            redirect(base_url());
+        }
     }
     public function changeImage(){
     $id = $this->input->post('id_hidden');
@@ -225,6 +249,35 @@
         }
      redirect(base_url('dashboard/editpost/' .$id));
   }
+  public function option(){
+    $data['spots'] = $this->m->getTouristSpot();
+    $this->load->view('trialOption',$data);
+  }
 
+
+  public function viewtrips(){
+     if ($this->session->userdata('u_id')=='2') {
+      $data['trips'] = $this->m->getTrips();
+      $data['tourist'] = $this->m->getTouristSpot();
+      $this->load->view('trips/viewtrips',$data);
+    }
+  }
+
+
+  public function editTrip($id){
+        if ($this->session->userdata('u_id')=='2') {
+          $data['spots']=$this->m->getTourist();
+          $data['origin']=$this->m->getOrigin();
+          $data['trips'] = $this->m->getTripsById($id);
+          $this->load->view('trips/editTrip', $data);
+        }
+    }
+
+    public function cancelTrip($id){
+      if($this->session->userdata('u_id')=='2') {
+        $result = $this->m->cancelTrip($id);
+        redirect(base_url('dashboard/viewtrips'));
+      }
+    } 
 
 }
